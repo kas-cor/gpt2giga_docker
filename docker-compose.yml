@@ -1,0 +1,25 @@
+services:
+  gpt2giga:
+    build: .
+    container_name: gpt2giga
+    volumes:
+      - ./:/app
+      - ./.env:/app/.env:ro
+    ports:
+      - "8090:8090"
+    environment:
+      PROXY_HOST: ${PROXY_HOST-localhost}
+      PROXY_PORT: ${PROXI_PORT-8090}
+      GPT2GIGA_VERBOSE: ${GPT2GIGA_VERBOSE-True}
+      GPT2GIGA_PASS_MODEL: ${GPT2GIGA_PASS_MODEL-False}
+      GPT2GIGA_PASS_TOKEN: ${GPT2GIGA_PASS_TOKEN-False}
+      GIGACHAT_BASE_URL: ${GIGACHAT_BASE_URL-https://gigachat.devices.sberbank.ru/api/v1}
+      GIGACHAT_MODEL: ${GIGACHAT_MODEL-GigaChat-2-Max}
+      GPT2GIGA_TIMEOUT: ${GPT2GIGA_TIMEOUT-600}
+      GPT2GIGA_EMBEDDINGS: ${GPT2GIGA_EMBEDDINGS-EmbeddingsGigaR}
+      GIGACHAT_USER: ${GIGACHAT_USER}
+      GIGACHAT_CREDENTIALS: ${GIGACHAT_CREDENTIALS}
+      GIGACHAT_ACCESS_TOKEN: ${GIGACHAT_ACCESS_TOKEN}
+      GIGACHAT_VERIFY_SSL_CERTS: ${GIGACHAT_VERIFY_SSL_CERTS-False}
+    restart: unless-stopped
+    command: ["gpt2giga", "--host", "0.0.0.0", "--port", "8090", "--verbose"]
