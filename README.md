@@ -53,6 +53,3 @@ Contributions are welcome! Please follow our contribution guidelines before subm
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Contact
-
-For questions or issues, please contact us at support@example.com.
